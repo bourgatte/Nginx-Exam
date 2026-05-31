@@ -80,7 +80,7 @@ make test            # exécute la suite de tests (tests/run_tests.sh)
 make stop-project    # arrête et supprime les conteneurs
 ```
 
-Après `make start-project`, vérifier que tous les conteneurs tournent :
+Après `make start-project`, vérifier que les 8 conteneurs tournent :
 
 ```bash
 docker ps
