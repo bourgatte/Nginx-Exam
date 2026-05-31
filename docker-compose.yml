@@ -1,4 +1,42 @@
 services:
+
+  api-v1:
+    build:
+      context: .
+      dockerfile: src/api/v1/Dockerfile
+    expose:
+      - "8000" 
+    deploy:
+      replicas: 3 
+
+  api-v2:
+    build:
+      context: .
+      dockerfile: src/api/v2/Dockerfile
+    expose:
+      - "8000"
+
+  nginx:
+    build:
+      context: deployments/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api-v1
+      - api-v2
+
+  nginx_exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx_exporter
+    ports:
+      - "9113:9113"
+    depends_on:
+      - nginx
+    environment:
+      SCRAPE_URI: https://nginx/nginx_status
+      
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus_server
