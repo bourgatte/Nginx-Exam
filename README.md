@@ -127,8 +127,8 @@ Réponse : la prédiction + le dictionnaire des probabilités par classe
 
 | Service | URL | Identifiants |
 |---|---|---|
-| Grafana | http://ip:3000 | `admin` / `admin` |
-| Prometheus | http://ip:9090 | — |
+| Grafana | http://localhost:3000 | `admin` / `admin` |
+| Prometheus | http://localhost:9090 | — |
 
 Dans Grafana, ajouter Prometheus comme source de données
 (`http://prometheus_server:9090`), puis importer un dashboard Nginx
